@@ -1,5 +1,6 @@
 package com.julianamanzieri.forum_hub.controller;
 
+import com.julianamanzieri.forum_hub.domain.user.DataAuthentication;
 import com.julianamanzieri.forum_hub.domain.user.DataRegistration;
 import com.julianamanzieri.forum_hub.domain.user.User;
 import com.julianamanzieri.forum_hub.domain.user.UserService;
@@ -23,7 +24,7 @@ public class RegisterUserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity registerNewUser(@RequestBody @Valid UserDetails data) {
+    public ResponseEntity registerNewUser(@RequestBody @Valid DataAuthentication data) {
         try {
             User newUser = service.createNewUser(data);
             return ResponseEntity.status(HttpStatus.CREATED).body(new DataRegistration(newUser));
