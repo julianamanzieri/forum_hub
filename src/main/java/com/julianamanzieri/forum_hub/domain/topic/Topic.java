@@ -4,10 +4,7 @@ import com.julianamanzieri.forum_hub.domain.course.Course;
 import com.julianamanzieri.forum_hub.domain.response.Response;
 import com.julianamanzieri.forum_hub.domain.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,6 +13,7 @@ import java.util.List;
 @Table(name = "topics")
 @Entity(name = "Topic")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -61,4 +59,12 @@ public class Topic {
 
     public void deleteById(Long id) {
     }
+
+    public Topic(String title, String message, User author, Course course) {
+        this.title = title;
+        this.message = message;
+        this.author = author;
+        this.course = course;
+    }
+
 }

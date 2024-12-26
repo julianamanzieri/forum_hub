@@ -1,6 +1,8 @@
 package com.julianamanzieri.forum_hub.controller;
 
+import com.julianamanzieri.forum_hub.domain.user.DataAuthentication;
 import com.julianamanzieri.forum_hub.domain.user.User;
+import com.julianamanzieri.forum_hub.infra.security.TokenJWTDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,7 @@ public class LoginController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity efetuarLogin (@RequestBody @Valid AuthenticationData dados) {
+    public ResponseEntity efetuarLogin (@RequestBody @Valid DataAuthentication dados) {
         var authenticationToken = new UsernamePasswordAuthenticationToken(dados.email(), dados.password());
         var authentication = manager.authenticate(authenticationToken);
         var tokenJWT = tokenService.generateToken((User) authentication.getPrincipal());

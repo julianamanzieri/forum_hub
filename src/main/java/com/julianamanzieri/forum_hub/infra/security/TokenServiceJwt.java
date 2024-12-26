@@ -15,13 +15,13 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 @Service
-public class TokenService {
+public class TokenServiceJwt {
 
     @Value("${api.security.token.secret}")
     private String secret;
 
 
-    public String generate(User user) {
+    public String generateToken(User user) {
 
         try {
             var algorithm = Algorithm.HMAC256(secret);
